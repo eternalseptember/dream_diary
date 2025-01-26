@@ -22,6 +22,16 @@ CREATE COLLATION case_insensitive (
 
 because postgres does not support database-wide, non-deterministic (i.e. because we want capital 'A' to be equal to lowercase 'a', and deterministic sorting involves byte-wise comparisons that will respect that capital 'A' and lowercase 'a' are two different things) collation until like... version 17 or something? (I'm on version 15.) I didn't even need database-wide, case-insensitive collation; I just needed it on the symbols field.
 
+Couldn't I just
+"""
+ALTER TABLE public.dreams_symbol ALTER COLUMN name TYPE varchar(255) COLLATE case_insensitive;
+"""
+
+? No. It told me:
+
+> nondeterministic collations are not supported for operator class "varchar_pattern_ops"
+
+
 My struggle wasn't on how to sort this field alphabetically from like, psql or pgAdmin:
 ```
 SELECT * FROM public.dreams_symbol 
@@ -65,3 +75,8 @@ class Migration(migrations.Migration):
 6. `python manage.py sqlmigrate <app_name> 0003`
 7. `python manage.py migrate`
 
+Naturally, this all runs fine on WSL-Ubuntu without errors, but on the raspberry pi, which was sorting things case-insensitively in the first place, there was an error at at step 7:
+
+> nondeterministic collations are not supported for operator class "varchar_pattern_ops"
+
+which is the same error I had on WSL-Ubuntu when I tried to alter the column directly through pgAdmin.
