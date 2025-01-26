@@ -1,0 +1,57 @@
+{% extends "dreams/base.html" %}
+
+
+{% block page_content %}
+    {% if page_obj %}
+        {% for dream in page_obj %}
+            <div class="dream_entry">
+                <!-- Dream Title-->
+                <h3><a href="{% url "dream_detail" dream.pk %}">
+                    {{ dream.title }}
+                </a></h3>
+
+                <!-- Date and Categories -->
+                <div class="dream_meta_info">
+                    <small>
+                        {{ dream.created_on.date | date:"M j, Y" }} | Categories:
+                        {% for symbol in dream.symbols.all %}
+                            {% comment %}
+                            the following line is all on a single line because spaces and line breaks add an extra space at the end of each symbol tag, which does not look as good if the list is stylized to add commas in between each item.
+                            {% endcomment %}
+                            <a href="#">{{ symbol.name }}</a>{% if not forloop.last %}, {% endif %}
+                            <!-- UPDATE THE URL -->
+                        {% endfor %}
+                    </small>
+                </div>
+
+                <!-- Dream Body -->
+                <div class="dream_body">
+                    <p>{{ dream.formatted_recollection | safe }}</p>
+                </div>
+
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <p>No dreams found.</p>
+
+    {% endif %}
+{% endblock page_content %}
+
+
+{% block page_navigation %}
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">prev</a>
+    {% endif %}
+
+    <span class="current_page">
+        ~page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}~
+    </span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+{% endblock page_navigation %}
+

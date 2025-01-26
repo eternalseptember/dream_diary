@@ -22,8 +22,9 @@ from django.urls import path, include
 
 
 urlpatterns = [
-	path("", include("dreams.urls")),
+    path("", include("dreams.urls")),
     path("admin/", admin.site.urls),
+    path('markdownx/', include("markdownx.urls")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

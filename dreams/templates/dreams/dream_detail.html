@@ -1,0 +1,56 @@
+{% extends "dreams/base.html" %}
+
+
+{% block page_title %}
+    <h2 class="dream_detail_title">{{ page_title | safe }}</h2>
+{% endblock page_title %}
+
+
+{% block page_content %}
+    <div class="dream_entry">
+        <!-- Dream Metadata -->
+        <div class="dream_meta_info">
+            <small>
+                {{ dream.created_on.date | date:"M j, Y" }}
+            </small>
+        </div>
+
+        <!-- Dream Body -->
+        <div class="dream_body">
+            <h3>Recollection</h3>
+            <p>{{ dream.formatted_recollection | safe }}</p>
+            <h3>Real-Life Preoccupations</h3>
+            <p>{{ dream.preoccupations }}</p>
+            <h3>Interpretation</h3>
+            <p>{{ dream.formatted_interpretation | safe }}</p>
+        </div>
+        
+    </div>
+
+    <!-- Section Explaining the Symbols -->
+    <div class="dream_symbols">
+        <h3>Symbols</h3>
+        <ul class="symbols_list">
+            {% for symbolism in dream.symbolism_set.select_related %}
+                <li>
+                    <!-- UPDATE THESE LINKS -->
+                    <a href="#">{{ symbolism.symbol.name }}</a> {% if symbolism.comment %}- {{ symbolism.comment }}{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock page_content %}
+
+
+{% block page_navigation %}
+    {% if dream.get_previous_by_created_on %}
+        <a href="{% url "blog_detail" dream.get_previous_by_created_on.pk %}">prev</a>
+    {% endif %}
+
+    <span class="current_page">~</span>
+
+    {% if dream.get_next_by_created_on.pk %}
+        <a href="{% url "blog_detail" dream.get_next_by_created_on.pk %}">next</a>
+    {% endif %}
+{% endblock page_navigation %}
+

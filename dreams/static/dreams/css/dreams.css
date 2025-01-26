@@ -1,0 +1,132 @@
+[data-theme="light"] {
+    --highlight_color: #f9e79f;
+    --invalid_input_border: #B22222;
+    --cal_day_link_bg: #EBF5Fb;
+    --calendar_border_color: black;
+}
+[data-theme="dark"] {
+    --highlight_color: #583759;
+    --invalid_input_border: #ff0000;
+    --cal_day_link_bg: #211512;
+    --calendar_border_color: #686A6C;
+}
+
+
+/* Base */
+h1, h2 {
+    text-align: center;
+}
+.pagination {
+    text-align: center;
+}
+.top_nav_bar {
+    margin:0px;
+    position:relative;
+    height:40px;
+}
+.nav_links {
+    text-align: left;
+    position:absolute;
+    bottom:-4px;
+    left:0px;
+}
+.search_form {
+    text-align: right;
+    position:absolute;
+    bottom:-7px;
+    right:0px;
+}
+li {
+    margin: 0px;
+}
+
+
+/* Detailed view */
+.dream_detail_title {
+    text-align: left !important;
+}
+
+
+/* Highlighting */
+.highlight {
+    background-color: var(--highlight_color);
+}
+
+
+/* Advanced Search Form */
+#advanced_search_form_container {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+}
+#advanced_search_form {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 10px 0px; /* horizontal, vertical */
+}
+.field_wrapper {
+    display: table-row;
+}
+.field_wrapper > label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+}
+input[aria-invalid='true'] {
+    border: 2px solid var(--invalid_input_border);
+}
+select#id_symbols {
+    resize: vertical;
+}
+.advanced_search_buttons {
+    display: table-caption;
+    caption-side: bottom;
+    text-align: center;
+}
+
+
+/* symbol view */
+.symbol_description {
+    font-style: italic;
+    text-align: center;
+}
+.symbolism_comment {
+    margin: 0px;
+}
+
+
+/* Monthly archive view */
+.archive_index > li {
+    padding: 0.1em;
+}
+.archive_index_date {
+    font-style: italic;
+    font-size: smaller;
+}
+
+
+/* Printed HTML Calendar */
+table.month, table.year {
+    /* width: 30%; */
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+th.year {
+    text-align: center;
+    font-size: larger;
+}
+.month, .day_of_the_week, .day_of_the_month {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.3rem;
+    border: 1px solid var(--calendar_border_color);
+}
+th.month {
+    font-size: larger;
+}
+.daily_link {
+    font-weight: bold !important;
+    background-color: var(--cal_day_link_bg) !important;
+}
+
