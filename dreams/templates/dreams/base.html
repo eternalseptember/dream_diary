@@ -28,13 +28,12 @@
     <div class="top_nav_bar">
         <div class="nav_links">
             <span id="color_mode_switcher">&#9775;</span> &#8226; 
-            <!-- UPDATE THESE -->
-            <a href="#">Archives</a> &#8226; 
-            <a href="#">Search</a> 
+            <a href="{% url "dreams_archives" %}">Archives</a> &#8226; 
+            <a href="#">Search</a> <!-- UPDATE THIS -->
         </div>
 
         <div class="search_form">
-            <form method="GET" action="{% url "dreams_search" %}"> <!-- UPDATE THE ACTION -->
+            <form method="GET" action="{% url "dreams_search" %}">
                 <input type="text" name="q" placeholder="Search">
                 <button type="submit">Search</button>
             </form>

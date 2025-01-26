@@ -1,0 +1,12 @@
+{% extends "dreams/base.html" %}
+
+
+{% block page_content %}
+    <ul>
+    {% for year in years %}
+        <!-- it was url "archive_year" year -->
+        <li><a href="#">{{ year }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock page_content %}
+

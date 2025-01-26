@@ -96,5 +96,41 @@ def dreams_search(request):
 
 
 
+# advanced search
+
+
+
+# archive time view
+
+
+
+# archive day view
+
+
+
+# archive month view
+
+
+
+# archive year view
+
+
+
+class ArchiveView(TemplateView):
+    template_name = "dreams/archive.html"
+
+    def get_context_data(self, **kwargs):
+        dates = Dream.objects.dates("created_on", "year", "DESC")
+        years = [date.year for date in dates]
+
+        # Output to Template
+        context = {
+            "site_title": 'Archives',
+            "page_title": 'Archives',
+            "years": years,
+        }
+        return context
+
+
 
 
