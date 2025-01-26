@@ -34,7 +34,7 @@
         </div>
 
         <div class="search_form">
-            <form method="GET" action="#"> <!-- UPDATE THE ACTION -->
+            <form method="GET" action="{% url "dreams_search" %}"> <!-- UPDATE THE ACTION -->
                 <input type="text" name="q" placeholder="Search">
                 <button type="submit">Search</button>
             </form>

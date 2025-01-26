@@ -4,7 +4,7 @@ Forked from [this project](https://github.com/eternalseptember/rpi-test), this i
 
 ## Bug to Figure Out
 
-* In the admin panel, when adding a dream, the markdown jquery to toggle the hide debounces and doesn't work anymore.
+* In the admin panel, when adding a dream, the markdown jquery to toggle the hide does not debounce, and therefore, and doesn't work anymore.
 
 ## Problems That Were Fixed
 

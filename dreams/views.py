@@ -50,7 +50,7 @@ def dream_detail(request, pk):
         return render(None, "dreams/404.html", context={})
 
 
-# Symbol view
+
 def symbol_definition(request, symbol):
     dreams = Dream.objects.filter(
         symbols__name = symbol
@@ -70,6 +70,30 @@ def symbol_definition(request, symbol):
         "page_obj": dreams,
     }
     return render(request, "dreams/symbol_definition.html", context)
+
+
+
+def dreams_search(request):
+    query = request.GET.get("q")
+
+    if query:
+        # Basic search with postgres
+        search_results = Dream.objects.annotate(
+            search=SearchVector("title", "recollection", "preoccupations", "interpretation")
+            ).filter(search=SearchQuery(query))
+
+    else:
+        search_results = Dream.objects.none()
+
+    # Output to Template
+    context = {
+        "site_title": 'Search: {}'.format(query),
+        "page_title": 'search: {}'.format(query),
+        "page_obj": paginate(search_results, request),
+        "query": query,
+    }
+    return render(request, "dreams/search_results.html", context)
+
 
 
 

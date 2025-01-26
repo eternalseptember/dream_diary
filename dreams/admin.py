@@ -120,15 +120,15 @@ class SymbolismAdmin(admin.ModelAdmin):
 
     @admin.display(description="symbol")
     def get_symbol(self, obj):
-        return get_admin_prev_link(obj.symbol, obj.symbol, 20)
+        return get_admin_text_link(obj.symbol, obj.symbol, 20)
     
     @admin.display(description="dream")
     def get_dream(self, obj):
-        return get_admin_prev_link(obj.dream, obj.dream, 20)
+        return get_admin_text_link(obj.dream, obj.dream, 20)
 
     @admin.display(description="comment")
     def get_comment(self, obj):
-        return get_admin_prev_link(obj, obj.comment, 40)
+        return get_admin_text_link(obj, obj.comment, 40)
 
 
 
@@ -137,7 +137,7 @@ class SymbolismAdmin(admin.ModelAdmin):
 ### ------------------------------------------
 ### Functions for getting admin links.
 ### ------------------------------------------
-def get_admin_prev_link(obj, link_text, length):
+def get_admin_text_link(obj, link_text, length):
     """
     Formats a link to the admin change page with truncated link text.
     """

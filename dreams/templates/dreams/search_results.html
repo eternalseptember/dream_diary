@@ -7,7 +7,7 @@
             <div class="dream_entry">
                 <!-- Dream Title-->
                 <h3><a href="{% url "dream_detail" dream.pk %}">
-                    {{ dream.title }}
+                    {{ dream.title | highlighter:query | safe }}
                 </a></h3>
 
                 <!-- Date and Symbols -->
@@ -25,7 +25,12 @@
 
                 <!-- Dream Body -->
                 <div class="dream_body">
-                    <p>{{ dream.formatted_recollection | safe }}</p>
+                    <h3>Recollection</h3>
+                    <p>{{ dream.formatted_recollection | highlighter:query | safe }}</p>
+                    <h3>Preoccupations</h3>
+                    <p>{{ dream.preoccupations | highlighter:query | safe }}</p>
+                    <h3>Interpretations</h3>
+                    <p>{{ dream.formatted_interpretation | highlighter:query | safe }}</p>
                 </div>
 
             </div>
@@ -40,8 +45,8 @@
 
 {% block page_navigation %}
     {% if page_obj.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ page_obj.previous_page_number }}">prev</a>
+        <a href="{% querystring page=1 %}">&laquo; first</a>
+        <a href="{% querystring page=page_obj.previous_page_number %}">prev</a>
     {% endif %}
 
     <span class="current_page">
@@ -49,8 +54,7 @@
     </span>
 
     {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">next</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        <a href="{% querystring page=page_obj.next_page_number %}">next</a>
+        <a href="{% querystring page=page_obj.paginator.num_pages %}">last &raquo;</a>
     {% endif %}
 {% endblock page_navigation %}
-
