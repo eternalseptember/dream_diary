@@ -10,7 +10,7 @@
                     {{ dream.title }}
                 </a></h3>
 
-                <!-- Date and Categories -->
+                <!-- Date and Symbols -->
                 <div class="dream_meta_info">
                     <small>
                         {{ dream.created_on.date | date:"M j, Y" }} | Categories:
@@ -18,8 +18,7 @@
                             {% comment %}
                             the following line is all on a single line because spaces and line breaks add an extra space at the end of each symbol tag, which does not look as good if the list is stylized to add commas in between each item.
                             {% endcomment %}
-                            <a href="#">{{ symbol.name }}</a>{% if not forloop.last %}, {% endif %}
-                            <!-- UPDATE THE URL -->
+                            <a href="{% url "symbol_definition" symbol.name %}">{{ symbol.name }}</a>{% if not forloop.last %}, {% endif %}
                         {% endfor %}
                     </small>
                 </div>

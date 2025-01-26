@@ -19,9 +19,9 @@
         <div class="dream_body">
             <h3>Recollection</h3>
             <p>{{ dream.formatted_recollection | safe }}</p>
-            <h3>Real-Life Preoccupations</h3>
+            <h3>Preoccupations</h3>
             <p>{{ dream.preoccupations }}</p>
-            <h3>Interpretation</h3>
+            <h3>Interpretations</h3>
             <p>{{ dream.formatted_interpretation | safe }}</p>
         </div>
         
@@ -33,8 +33,7 @@
         <ul class="symbols_list">
             {% for symbolism in dream.symbolism_set.select_related %}
                 <li>
-                    <!-- UPDATE THESE LINKS -->
-                    <a href="#">{{ symbolism.symbol.name }}</a> {% if symbolism.comment %}- {{ symbolism.comment }}{% endif %}
+                    <a href="{% url "symbol_definition" symbolism.symbol.name %}">{{ symbolism.symbol.name }}</a> {% if symbolism.comment %}- {{ symbolism.comment }}{% endif %}
                 </li>
             {% endfor %}
         </ul>
@@ -44,13 +43,13 @@
 
 {% block page_navigation %}
     {% if dream.get_previous_by_created_on %}
-        <a href="{% url "blog_detail" dream.get_previous_by_created_on.pk %}">prev</a>
+        <a href="{% url "dream_detail" dream.get_previous_by_created_on.pk %}">prev</a>
     {% endif %}
 
     <span class="current_page">~</span>
 
     {% if dream.get_next_by_created_on.pk %}
-        <a href="{% url "blog_detail" dream.get_next_by_created_on.pk %}">next</a>
+        <a href="{% url "dream_detail" dream.get_next_by_created_on.pk %}">next</a>
     {% endif %}
 {% endblock page_navigation %}
 

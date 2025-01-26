@@ -51,7 +51,25 @@ def dream_detail(request, pk):
 
 
 # Symbol view
+def symbol_definition(request, symbol):
+    dreams = Dream.objects.filter(
+        symbols__name = symbol
+        ).order_by("-created_on")
 
+    # Output to Template
+    symbol = Symbol.objects.get(name=symbol)
+    symbol_edit_url = reverse("admin:{}_{}_change"
+                  .format(symbol._meta.app_label, symbol._meta.model_name), 
+                  args=[symbol.id])
+    page_title = 'symbol: <a href="{}">{}</a>'.format(symbol_edit_url, symbol)
+
+    context = {
+        "site_title": 'Symbol: {}'.format(symbol),
+        "page_title": page_title,
+        "symbol": symbol,
+        "page_obj": dreams,
+    }
+    return render(request, "dreams/symbol_definition.html", context)
 
 
 
