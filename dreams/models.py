@@ -6,7 +6,7 @@ from markdownx.utils import markdownify
 
 
 class Symbol(models.Model):
-    name = models.CharField(max_length=255, unique=True, verbose_name="symbols")
+    name = models.CharField(max_length=255, unique=True, verbose_name="symbols", db_collation="case_insensitive")
     description = models.TextField(blank=True)
 
     def __str__(self):

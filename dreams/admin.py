@@ -52,9 +52,7 @@ class SymbolAdmin(admin.ModelAdmin):
         dreams_list = '<ol class="symbol_dreams_list">'
 
         for dream in objects_list:
-            link = reverse("admin:{}_{}_change"
-                  .format(dream._meta.app_label, dream._meta.model_name), 
-                  args=[dream.id])
+            link = get_admin_link(dream)
             dreams_list += '<li><a href="{}">{}</a></li>'.format(link, dream.title)
         
         dreams_list += '</ol>'
@@ -122,29 +120,40 @@ class SymbolismAdmin(admin.ModelAdmin):
 
     @admin.display(description="symbol")
     def get_symbol(self, obj):
-        link_url = reverse("admin:{}_{}_change"
-                     .format(obj.symbol._meta.app_label, obj.symbol._meta.model_name), args=[obj.symbol.id])
-        link_text = truncatechars(obj.symbol, 20)
-        link = '<a href="{}">{}</a>'.format(link_url, link_text)
-        return format_html(link)
+        return get_admin_prev_link(obj.symbol, obj.symbol, 20)
     
     @admin.display(description="dream")
     def get_dream(self, obj):
-        link_url = reverse("admin:{}_{}_change"
-                     .format(obj.dream._meta.app_label, obj.dream._meta.model_name), args=[obj.dream.id])
-        link_text = truncatechars(obj.dream, 20)
-        link = '<a href="{}">{}</a>'.format(link_url, link_text)
-        return format_html(link)
+        return get_admin_prev_link(obj.dream, obj.dream, 20)
 
     @admin.display(description="comment")
     def get_comment(self, obj):
-        link_url = reverse("admin:{}_{}_change"
-                     .format(obj._meta.app_label, obj._meta.model_name), args=[obj.id])
-        link_text = truncatechars(obj.comment, 40)
-        link = '<a href="{}">{}</a>'.format(link_url, link_text)
-        return format_html(link)
+        return get_admin_prev_link(obj, obj.comment, 40)
 
 
+
+
+
+### ------------------------------------------
+### Functions for getting admin links.
+### ------------------------------------------
+def get_admin_prev_link(obj, link_text, length):
+    """
+    Formats a link to the admin change page with truncated link text.
+    """
+    link_url = get_admin_link(obj)
+    link_text = truncatechars(link_text, length)
+    link = '<a href="{}">{}</a>'.format(link_url, link_text)
+    return format_html(link)
+
+
+def get_admin_link(obj):
+    """
+    This gets the URL.
+    """
+    return reverse("admin:{}_{}_change"
+                .format(obj._meta.app_label, obj._meta.model_name), 
+                args=[obj.id])
 
 
 
