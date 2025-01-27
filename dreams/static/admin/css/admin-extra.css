@@ -6,12 +6,14 @@
     justify-content: center;
     flex-wrap: wrap;
 }
-
+/* The main landing page after removing the recent actions sidebar. */
+.colMS {
+    margin-right: 0px;
+}
 /* "Site Administration" or "Select ___ to change" headers. */
 #content > h1 {
     text-align: center;
 }
-
 /* The success/error messages when creating/editing a post. */
 .messagelist {
     position: fixed;
