@@ -24,7 +24,7 @@ $(document).ready(function() {
     });
 
     // Clears the multiselect field.
-    $("#clear_categories").click(function() {
+    $("#clear_multi_choices").click(function() {
         $('select[multiple]').val('');
     });
 });

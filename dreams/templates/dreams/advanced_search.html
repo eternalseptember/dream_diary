@@ -1,0 +1,102 @@
+{% extends "dreams/search_results.html" %}
+{% load static %}
+
+
+{% block page_title %}
+    <h2 id="advanced_search_title">Advanced Search &#8648;</h2>
+{% endblock page_title %}
+
+
+{% block page_content %}
+    <!-- Display search form first. -->
+    <div id="advanced_search_form_container">
+        <form action="{% url "advanced_search" %}" id="advanced_search_form" method="GET">
+            {% for field in form %}
+                <div class="field_wrapper">
+                    {{ field.label_tag }} {{ field }}
+                </div>
+            {% endfor %}
+            
+            <div class="advanced_search_buttons">
+                <input type="reset" value="Reset">
+                <input type="button" value="Clear Symbols" id="clear_multi_choices">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Then print search results. -->
+    {% if page_obj %}
+        {% for dream in page_obj %}
+            <div class="dream_entry">
+                {% comment %}
+                This is for cleaning up the invisible highlight that shows up in the source code.
+                {% endcomment %}
+                <!-- Dream Title-->
+                {% if query_title %}
+                    <h3><a href="{% url "dream_detail" dream.pk %}">
+                        {{ dream.title | highlighter:query_title }}
+                    </a></h3>
+                {% else %}
+                    <h3><a href="{% url "dream_detail" dream.pk %}">
+                        {{ dream.title }}
+                    </a></h3>
+                {% endif %}
+                
+                <!-- Date and Symbols -->
+                <div class="dream_meta_info">
+                    <small>
+                        {{ dream.created_on.date | date:"M j, Y" }} | Symbols:
+                        {% for symbol in dream.symbols.all %}
+                            {% comment %}
+                            The following line is all on a single line because spaces and line breaks add an extra space at the end of each symbol tag, which does not look as good if the list is stylized to add commas in between each item.
+                            It also checks to if any of the symbols were searched, and if so, highlights it. Otherwise, it outputs the symbol without the template filter that would cause invisible highlights that shows up in the source code.
+                            {% endcomment %}
+                            <a href="{% url "symbol_definition" symbol.name %}">{% if symbol.name in query_symbols %}{{ symbol.name | highlighter:symbol.name }}{% else %}{{ symbol.name }}{% endif %}</a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </small>
+                </div>
+
+                <!-- Dream Body -->
+                <div class="dream_body">
+                    {% comment %}
+                    If recollection, preoccupation, or interpretation were searched for, 
+                    then only show those sections with highlighted words.
+                    Otherwise (like only date or symbol search), just show the recollection.
+                    {% endcomment %}
+                    {% if query_recollection or query_preoccupation or query_interpretation %}
+                        {% if query_recollection %}
+                            <h3>Recollection</h3>
+                            <p>{{ dream.formatted_recollection | highlighter:query_recollection | safe }}</p>
+                        {% endif %}
+
+                        {% if query_preoccupation %}
+                            <h3>preoccupation</h3>
+                            <p>{{ dream.preoccupation | highlighter:query_preoccupation | safe }}</p>
+                        {% endif %}
+                        
+                        {% if query_interpretation %}
+                            <h3>Interpretations</h3>
+                            <p>{{ dream.formatted_interpretation | highlighter:query_interpretation | safe }}</p>
+                        {% endif %}
+
+                    {% else %}
+                        <p>{{ dream.formatted_recollection | safe }}</p>
+
+                    {% endif %}
+    
+                </div>
+
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <p>No dreams found.</p>
+
+    {% endif %}
+
+    <script src="{% static "dreams/js/advanced_search.js" %}"></script>
+{% endblock page_content %}
+
+

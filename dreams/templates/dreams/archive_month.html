@@ -1,0 +1,44 @@
+{% extends "dreams/base.html" %}
+
+
+{% block page_content %}
+    {% if page_obj %}
+        <div class="monthly_dream_list">
+            <!-- List of Dreams -->
+            <ul class="archive_index">
+                {% for dream in page_obj %}
+                    <li>
+                        <span class="archive_index_date">{{ dream.created_on.date | date:"M j, Y" }}</span> - 
+                        <a href="{% url 'dream_detail' dream.pk %}">{{ dream.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+    {% else %}
+        <p>No dreams found.</p>
+
+    {% endif %}
+{% endblock page_content %}
+
+
+{% block page_navigation %}
+    {% if next_month %}
+        <a href="{% url "archive_month" next_month.0 next_month.1 %}">
+            {{ next_month.1 | month_name }} {{ next_month.0 }}
+        </a>
+    {% endif %}
+
+    <span class="current_page">
+        ~{{ this_month.1 | month_name }} {{ this_month.0 }}~
+    </span>
+
+    {% if prev_month %}
+        <a href="{% url "archive_month" prev_month.0 prev_month.1 %}">
+            {{ prev_month.1 | month_name }} {{ prev_month.0 }}
+        </a>
+    {% endif %}
+{% endblock page_navigation %}
+
+

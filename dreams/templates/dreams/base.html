@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'dreams/css/sakura.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'dreams/css/dreams.css' %}">
     <script src="{% static "dreams/js/jquery-3.7.1.min.js" %}"></script>
+
+    {% block extrahead%}{% endblock extrahead%}
 </head>
 
 
@@ -29,7 +31,7 @@
         <div class="nav_links">
             <span id="color_mode_switcher">&#9775;</span> &#8226; 
             <a href="{% url "dreams_archives" %}">Archives</a> &#8226; 
-            <a href="#">Search</a> <!-- UPDATE THIS -->
+            <a href="{% url "advanced_search" %}">Search</a>
         </div>
 
         <div class="search_form">

@@ -19,8 +19,8 @@
         <div class="dream_body">
             <h3>Recollection</h3>
             <p>{{ dream.formatted_recollection | safe }}</p>
-            <h3>Preoccupations</h3>
-            <p>{{ dream.preoccupations }}</p>
+            <h3>preoccupation</h3>
+            <p>{{ dream.preoccupation }}</p>
             <h3>Interpretations</h3>
             <p>{{ dream.formatted_interpretation | safe }}</p>
         </div>
@@ -42,14 +42,14 @@
 
 
 {% block page_navigation %}
-    {% if dream.get_previous_by_created_on %}
-        <a href="{% url "dream_detail" dream.get_previous_by_created_on.pk %}">prev</a>
+    {% if dream.get_next_by_created_on.pk %}
+        <a href="{% url "dream_detail" dream.get_next_by_created_on.pk %}">newer</a>
     {% endif %}
 
     <span class="current_page">~</span>
 
-    {% if dream.get_next_by_created_on.pk %}
-        <a href="{% url "dream_detail" dream.get_next_by_created_on.pk %}">next</a>
+    {% if dream.get_previous_by_created_on %}
+        <a href="{% url "dream_detail" dream.get_previous_by_created_on.pk %}">older</a>
     {% endif %}
 {% endblock page_navigation %}
 

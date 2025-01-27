@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('created_on', models.DateTimeField(default=django.utils.timezone.now)),
                 ('last_modified', models.DateTimeField(auto_now=True)),
                 ('recollection', markdownx.models.MarkdownxField()),
-                ('preoccupations', models.TextField(blank=True)),
+                ('preoccupation', models.TextField(blank=True)),
                 ('interpretation', markdownx.models.MarkdownxField(blank=True)),
             ],
         ),

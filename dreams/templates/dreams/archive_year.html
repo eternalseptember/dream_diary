@@ -1,0 +1,60 @@
+{% extends "dreams/base.html" %}
+
+
+{% block page_content %}
+    {% if page_obj %}
+        <!-- Prints the calendar first. -->
+         <div class="calendar_container">
+            {{ cal | safe }}
+         </div>
+
+        <!-- Then prints the dream list. -->
+        {% regroup page_obj by month as dream_months %}
+        <!-- Regroup produces a list of group objects. -->
+        <!-- Each group object has two attributes: grouper and list. -->
+
+        {% for monthly in dream_months %}
+            <div class="monthly_dream_list">
+                <!-- Month Header Link -->
+                <h3><a href="{% url "archive_month" monthly.grouper|date:"Y" monthly.grouper|date:"m" %}">
+                    {{ monthly.grouper | date:"F" }}
+                </a></h3>
+
+                <!-- List of Dreams -->
+                <ul class="archive_index">
+                    {% for dream in monthly.list %}
+                        <li>
+                            <span class="archive_index_date">{{ dream.created_on.date | date:"M j, Y" }}</span> - 
+                            <a href="{% url 'dream_detail' dream.pk %}">{{ dream.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <p>No dreams found.</p>
+
+    {% endif %}
+{% endblock page_content %}
+
+
+{% block page_navigation %}
+    {% if next_year %}
+        <a href="{% url "archive_year" next_year.0 %}">
+            {{ next_year.0 }}
+        </a>
+    {% endif %}
+
+    <span class="current_page">
+        ~{{ this_year.0 }}~
+    </span>
+
+    {% if prev_year %}
+        <a href="{% url "archive_year" prev_year.0 %}">
+            {{ prev_year.0 }}
+        </a>
+    {% endif %}
+{% endblock page_navigation %}
+

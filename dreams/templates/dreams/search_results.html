@@ -25,12 +25,26 @@
 
                 <!-- Dream Body -->
                 <div class="dream_body">
-                    <h3>Recollection</h3>
-                    <p>{{ dream.formatted_recollection | highlighter:query | safe }}</p>
-                    <h3>Preoccupations</h3>
-                    <p>{{ dream.preoccupations | highlighter:query | safe }}</p>
-                    <h3>Interpretations</h3>
-                    <p>{{ dream.formatted_interpretation | highlighter:query | safe }}</p>
+                    {% comment %}
+                    If the query is in recollection, preoccupation, or interpretation,
+                    then only show those sections with the query highlighted.
+                    Lowercased the comparison because it would be case sensitive otherwise.
+                    If the query is only in the title, then only show the title.
+                    {% endcomment %}
+                    {% if query|lower in dream.formatted_recollection|lower %}
+                        <h3>Recollection</h3>
+                        <p>{{ dream.formatted_recollection | highlighter:query | safe }}</p>
+                    {% endif %}
+                    
+                    {% if query|lower in dream.preoccupation|lower %}
+                        <h3>preoccupation</h3>
+                        <p>{{ dream.preoccupation | highlighter:query | safe }}</p>
+                    {% endif %}
+                    
+                    {% if query|lower in dream.formatted_interpretation|lower %}
+                        <h3>Interpretations</h3>
+                        <p>{{ dream.formatted_interpretation | highlighter:query | safe }}</p>
+                    {% endif %}
                 </div>
 
             </div>

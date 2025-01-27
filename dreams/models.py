@@ -18,7 +18,7 @@ class Dream(models.Model):
     created_on = models.DateTimeField(default=now)
     last_modified = models.DateTimeField(auto_now=True)
     recollection = MarkdownxField()
-    preoccupations = models.TextField(blank=True)  # real-life preocccupations
+    preoccupation = models.TextField(blank=True)  # real-life preocccupations
     interpretation = MarkdownxField(blank=True)
     symbols = models.ManyToManyField("Symbol", blank=True, through="Symbolism", related_name="dreams")
 
