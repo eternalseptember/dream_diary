@@ -42,7 +42,7 @@
                     {% endif %}
                     
                     {% if query|lower in dream.formatted_interpretation|lower %}
-                        <h3>Interpretations</h3>
+                        <h3>Interpretation</h3>
                         <p>{{ dream.formatted_interpretation | highlighter:query | safe }}</p>
                     {% endif %}
                 </div>
