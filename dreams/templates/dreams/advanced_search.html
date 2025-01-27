@@ -11,12 +11,63 @@
     <!-- Display search form first. -->
     <div id="advanced_search_form_container">
         <form action="{% url "advanced_search" %}" id="advanced_search_form" method="GET">
-            {% for field in form %}
+            <div class="field_wrapper">
+                {{ form.title__icontains.label_tag }}
+                {{ form.title__icontains }}
+            </div>
+        
+            <div class="field_wrapper">
+                {{ form.recollection__icontains.label_tag }}
+                {{ form.recollection__icontains }}
+            </div>
+        
+            <div class="field_wrapper">
+                {{ form.preoccupation__icontains.label_tag }}
+                {{ form.preoccupation__icontains }}
+            </div>
+        
+            <div class="field_wrapper">
+                {{ form.interpretation__icontains.label_tag }}
+                {{ form.interpretation__icontains }}
+            </div>
+        
+            <div class="field_wrapper">
+                {{ form.created_on__date.label_tag }}
+                {{ form.created_on__date }}
+            </div>
+        
+            <div class="field_wrapper">
+                {{ form.anniversary_date.label_tag }}
+                {{ form.anniversary_date }}
+            </div>
+
+            <div class="field_wrapper">
+                {{ form.created_on__date__gte.label_tag }}
+                {{ form.created_on__date__gte }}
+            </div>
+        
+            <div class="field_wrapper">
+                {{ form.created_on__date__lte.label_tag }}
+                {{ form.created_on__date__lte }}
+            </div>
+
+            <div class="field_wrapper">
+                {{ form.symbols.label_tag }}
+                {{ form.symbols }}
+            </div>
+
+            <div class="field_wrapper">
                 <div class="field_wrapper">
-                    {{ field.label_tag }} {{ field }}
+                    {{ form.and_symbols.label_tag }}
+                    {{ form.and_symbols }}
                 </div>
-            {% endfor %}
             
+                <div class="field_wrapper">
+                    {{ form.sort_how.label_tag }}
+                    {{ form.sort_how }}
+                </div>
+            </div>
+        
             <div class="advanced_search_buttons">
                 <input type="reset" value="Reset">
                 <input type="button" value="Clear Symbols" id="clear_multi_choices">

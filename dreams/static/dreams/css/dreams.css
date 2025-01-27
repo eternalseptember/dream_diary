@@ -33,7 +33,7 @@ h1, h2 {
 .search_form {
     text-align: right;
     position:absolute;
-    bottom:-7px;
+    bottom:-9px;
     right:0px;
 }
 li {
@@ -54,23 +54,26 @@ li {
 
 
 /* Advanced Search Form */
-#advanced_search_form_container {
-    width: 60%;
-    margin: 0 auto;
-    display: block;
-}
 #advanced_search_form {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 10px 0px; /* horizontal, vertical */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 15px;
+}
+#advanced_search_form > .field_wrapper:nth-child(odd) {
+    justify-self: right;
+}
+#advanced_search_form > .field_wrapper:nth-child(even) {
+    justify-self: left;
 }
 .field_wrapper {
-    display: table-row;
+    text-align: left;
+    width: 200px;
 }
-.field_wrapper > label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
+#advanced_search_form > label {
+    margin-bottom: 2px;
+}
+#advanced_search_form > input {
+    margin-bottom: 5px;
 }
 input[aria-invalid='true'] {
     border: 2px solid var(--invalid_input_border);
@@ -79,8 +82,7 @@ select#id_symbols {
     resize: vertical;
 }
 .advanced_search_buttons {
-    display: table-caption;
-    caption-side: bottom;
+    grid-column: 1/-1;
     text-align: center;
 }
 
