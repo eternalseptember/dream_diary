@@ -110,6 +110,7 @@ class DreamAdmin(MarkdownxModelAdmin):
 class SymbolismAdmin(admin.ModelAdmin):
     list_display = ["get_symbol", "get_dream", "get_comment"]
     fields = ["symbol", "dream", "comment"]
+    list_per_page = 20
     readonly_fields = ["symbol", "dream"]
     actions = None
 
