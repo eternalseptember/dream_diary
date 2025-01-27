@@ -4,17 +4,18 @@
     <div class="markdownx-preview" style="overflow:hidden;"></div>
 
     <script>
+
         $(document).ready(function() {
             // Hides the preview by default.
             $(".markdownx-preview").hide();
 
             // Toggles the preview.
-            $(".mdx_preview_toggle").click(function() {
+            $(".mdx_preview_toggle").click(function(event) {
                 event.stopPropagation();
                 event.stopImmediatePropagation();
-                console.log('button clicked');
                 $(this).next("div").toggle();
             });
+
         });
     </script>
 </div>
