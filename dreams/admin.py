@@ -19,6 +19,9 @@ class SymbolAdmin(admin.ModelAdmin):
     list_display = ["name", "dreams_count", "get_description", "view_symbol"]
     ordering = ["name"]
     list_per_page = 20
+    actions_on_top = False
+    actions_on_bottom = True
+    search_fields= ["name"]
 
     # When adding or editing a symbol.
     readonly_fields = ["get_dreams", "view_symbol"]
