@@ -1,21 +1,5 @@
 /* CSS Variables */
-/* Color for calendar dates are in blog.css. */
-:root {
-    --font_size: 1.5rem;
-    --max_width: 40%; /* 38em */
-    --small_font_size: 90%;
-    --font_family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        "Helvetica Neue",
-        Arial,
-        "Noto Sans",
-        sans-serif;
-    --headers_margin_bottom: 0.5rem;
-}
-
+/* Color for calendar dates are in dreams.css. */
 HTML[data-theme="light"] {
     --main_bg_color: #f9f9f9;
     --main_text_color: #4a4a4a;
@@ -32,6 +16,21 @@ HTML[data-theme="dark"] {
     --visited_text_color: #e26f7a;
     --hover_text_color: #9ACD32;
     --quote_bg_color: #40363a;
+}
+:root {
+    --font_size: 1.5rem;
+    --max_width: 40%; /* 38em */
+    --small_font_size: 90%;
+    --font_family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        "Noto Sans",
+        sans-serif;
+    --headers_margin_bottom: 0.5rem;
 }
 
 

@@ -14,34 +14,36 @@
 #content > h1 {
     text-align: center;
 }
+
+
+
+/* ********************************************************** */
+/* Label, dropdown menu, "Go" button, and number of items selected
+   when looking at a model's overview page. */
+.actions {
+    text-align: center;
+}
 /* The success/error messages when creating/editing a post. */
 .messagelist {
     position: fixed;
     bottom: 0px;
 }
 
-/* Label, dropdown menu, "Go" button, and number of items selected
-   when looking at a model's overview page. */
-.actions {
-    text-align: center;
-}
-
 
 
 /* ********************************************************** */
-/* The size of a post's title box. */
+/* The size of a dream's title box. */
 #dream_form input#id_title {
     width: 600px;
-    /* width: 45em; */
 }
 
-/* Textbox while creating/editing a post. */
+/* Textbox while creating/editing a dream. */
 #dream_form textarea#id_recollection, #dream_form textarea#id_interpretation {
     max-height: 300px !important;
     overflow-y: scroll;
 }
 
-/* Textbox size while creating/editing a category. */
+/* Textbox size while creating/editing a symbol. */
 #symbol_form textarea#id_description {
     width: 500px;
 }

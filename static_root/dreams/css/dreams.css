@@ -20,21 +20,21 @@ h1, h2 {
     text-align: center;
 }
 .top_nav_bar {
-    margin:0px;
-    position:relative;
-    height:40px;
+    margin: 0px;
+    position: relative;
+    height: 40px;
 }
 .nav_links {
     text-align: left;
-    position:absolute;
-    bottom:-4px;
-    left:0px;
+    position: absolute;
+    bottom: -4px;
+    left: 0px;
 }
 .search_form {
     text-align: right;
-    position:absolute;
-    bottom:-9px;
-    right:0px;
+    position: absolute;
+    bottom: -9px;
+    right: 0px;
 }
 li {
     margin: 0px;
@@ -87,7 +87,7 @@ select#id_symbols {
 }
 
 
-/* symbol view */
+/* Symbol view */
 .symbol_description {
     font-style: italic;
     text-align: center;
@@ -109,7 +109,6 @@ select#id_symbols {
 
 /* Printed HTML Calendar */
 table.month, table.year {
-    /* width: 30%; */
     table-layout: fixed;
     border-collapse: collapse;
 }
