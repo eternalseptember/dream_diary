@@ -8,7 +8,6 @@ HTML[data-theme="light"] {
     --hover_text_color: #982c61;
     --quote_bg_color: #f1f1f1;
 }
-
 HTML[data-theme="dark"] {
     --main_bg_color: #120c0e;
     --main_text_color: #d9d8dc;
