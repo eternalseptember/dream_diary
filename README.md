@@ -19,9 +19,9 @@ CREATE COLLATION case_insensitive (
 because postgres does not support database-wide, non-deterministic (i.e. because we want capital 'A' to be equal to lowercase 'a', and deterministic sorting involves byte-wise comparisons that will respect that capital 'A' and lowercase 'a' are two different things) collation until like... version 17 or something? (I'm on version 15.) I didn't even need database-wide, case-insensitive collation; I just needed it on the symbols field.
 
 Couldn't I just
-"""
+```
 ALTER TABLE public.dreams_symbol ALTER COLUMN name TYPE varchar(255) COLLATE case_insensitive;
-"""
+```
 
 ? No. It told me:
 
