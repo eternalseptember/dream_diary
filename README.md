@@ -102,5 +102,6 @@ ALTER DATABASE dream_diary OWNER TO django_test;
 SELECT * FROM pg_indexes WHERE tablename = 'dreams_symbol';
 ```
 Note the varchar index name, then `DROP INDEX dreams_symbol_name_c5c817b4_like;`
+
 11. `python manage.py migrate dreams 0003`. The symbols are sorted alphabetically now.
 12. Update the database file with the owner name (if different), then restore the database backup file. `psql -h localhost -d dream_diary -U django_test -f FILE_NAME.sql`.
