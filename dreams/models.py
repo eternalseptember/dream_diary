@@ -27,6 +27,10 @@ class Dream(models.Model):
     @property
     def formatted_recollection(self):
         return markdownify(self.recollection)
+    
+    @property
+    def formatted_preoccupation(self):
+        return markdownify(self.preoccupation)
 
     @property
     def formatted_interpretation(self):
