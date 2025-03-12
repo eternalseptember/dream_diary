@@ -11,7 +11,9 @@
         <!-- Dream Metadata -->
         <div class="dream_meta_info">
             <small>
-                {{ dream.created_on.date | date:"M j, Y" }}
+                Created: {{ dream.created_on | date:"(D) M j, Y, g:i a" }}
+                <br>
+                Modified: {{ dream.last_modified | date:"(D) M j, Y, g:i a" }}
             </small>
         </div>
 

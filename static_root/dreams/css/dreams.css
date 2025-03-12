@@ -45,6 +45,9 @@ li {
 .dream_detail_title {
     text-align: left !important;
 }
+.dream_meta_info {
+    font-style: italic;
+}
 
 
 /* Highlighting */
