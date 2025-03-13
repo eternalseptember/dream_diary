@@ -85,14 +85,12 @@ class HTMLCalendar(calendar.Calendar):
         month_html += '</th></tr>'
 
         # Week header
+        weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
         month_html += '<tr>'
-        month_html += '<th class="day_of_the_week">Sun</th>'
-        month_html += '<th class="day_of_the_week">Mon</th>'
-        month_html += '<th class="day_of_the_week">Tue</th>'
-        month_html += '<th class="day_of_the_week">Wed</th>'
-        month_html += '<th class="day_of_the_week">Thu</th>'
-        month_html += '<th class="day_of_the_week">Fri</th>'
-        month_html += '<th class="day_of_the_week">Sat</th>'
+
+        for weekday in weekdays:
+            month_html += '<th class="day_of_the_week">{}</th>'.format(weekday)
+
         month_html += '</tr>'
 
         # Weeks of the month
