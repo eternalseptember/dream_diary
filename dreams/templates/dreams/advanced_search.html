@@ -98,7 +98,7 @@
                 <!-- Date and Symbols -->
                 <div class="dream_meta_info">
                     <small>
-                        {{ dream.created_on.date | date:"M j, Y" }} | Symbols:
+                        {{ dream.created_on | date:"M j, Y" }} | Symbols:
                         {% for symbol in dream.symbols.all %}
                             {% comment %}
                             The following line is all on a single line because spaces and line breaks add an extra space at the end of each symbol tag, which does not look as good if the list is stylized to add commas in between each item.

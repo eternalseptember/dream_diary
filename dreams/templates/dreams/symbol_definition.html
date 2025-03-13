@@ -16,7 +16,7 @@
             <!-- All the dreams in this symbol. -->
             {% for dream in page_obj %}
                 <li>
-                    <span class="archive_index_date">{{ dream.created_on.date | date:"M j, Y" }}</span> - 
+                    <span class="archive_index_date">{{ dream.created_on | date:"M j, Y" }}</span> - 
                     <a href="{% url 'dream_detail' dream.pk %}">{{ dream.title }}</a>
                 </li>
 
