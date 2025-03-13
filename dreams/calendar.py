@@ -7,8 +7,8 @@ from django.urls import reverse
 class HTMLCalendar(calendar.Calendar):
     """
     How to use:
-    1. In the view, import HTML calendar.
-    2. cal = HTMLCalendar(year, entries_list).print()
+    1. In the view, import HTMLCalendar.
+    2. cal = HTMLCalendar(year, entries_list).print_year()
     3. Pass 'cal' to the context.
     """
     def __init__(self, year, entries_list):
@@ -33,7 +33,7 @@ class HTMLCalendar(calendar.Calendar):
         return month_list
 
 
-    def printyear(self):
+    def print_year(self):
         """
         Formats and prints a yearly calendar: 3 months per row x 4 rows.
         The year is set as a class variable when this object is created.

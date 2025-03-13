@@ -251,7 +251,7 @@ class ArchiveYearView(ArchiveTimeView):
             ).order_by("created_on")
 
         search_results = dreams_list.annotate(month=TruncMonth("created_on"))
-        cal = HTMLCalendar(year, dreams_list).printyear()
+        cal = HTMLCalendar(year, dreams_list).print_year()
 
         # Steps for nav links
         dates = Dream.objects.dates("created_on", "year", "ASC")
