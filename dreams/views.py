@@ -186,7 +186,7 @@ class ArchiveDayView(ArchiveTimeView):
 
         search_results = Dream.objects.filter(
             created_on__date = day_date
-            ).order_by("-created_on")
+            ).order_by("created_on")
 
         # Steps for nav links
         dates = Dream.objects.dates("created_on", "day", "ASC")
