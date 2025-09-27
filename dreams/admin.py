@@ -115,7 +115,7 @@ class SymbolismAdmin(admin.ModelAdmin):
     fields = ["symbol", "dream", "comment"]
     list_per_page = 20
     readonly_fields = ["symbol", "dream"]
-    actions = None
+    # actions = None
 
 
     # Disables the add functionality
