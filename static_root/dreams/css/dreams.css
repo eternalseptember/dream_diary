@@ -83,6 +83,7 @@ input[aria-invalid='true'] {
 }
 select#id_symbols {
     resize: vertical;
+    width: 100%; /* So that symbols length don't stretch the select box. */
 }
 .advanced_search_buttons {
     grid-column: 1/-1;
