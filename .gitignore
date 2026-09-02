@@ -1,6 +1,5 @@
 media_root/
-blog/static/admin/hidden/
-static_collected/admin/hidden/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
